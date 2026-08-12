@@ -1,4 +1,23 @@
 /* ONVEX mobile premium layer */
+.ovx-scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0) scale(.985);
+  filter: blur(8px);
+  transition:
+    opacity .85s cubic-bezier(.16,1,.3,1) var(--ovx-reveal-delay, 0ms),
+    transform .9s cubic-bezier(.16,1,.3,1) var(--ovx-reveal-delay, 0ms),
+    filter .8s ease var(--ovx-reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+.ovx-scroll-reveal.ovx-scroll-visible {
+  opacity: 1;
+  transform: translate3d(0,0,0) scale(1);
+  filter: blur(0);
+}
+.product-card.ovx-scroll-reveal { transform: translate3d(0,42px,0) scale(.97) rotateX(2deg); }
+.product-card.ovx-scroll-visible { transform: translate3d(0,0,0) scale(1) rotateX(0); }
+.category-card.ovx-scroll-reveal { transform: translate3d(0,38px,0) scale(.975); }
+
 @media (max-width: 700px) {
   .topbar { font-size: 8px; letter-spacing: .16em; backdrop-filter: blur(10px); }
   .site-header { position: sticky; top: 0; }
@@ -54,6 +73,11 @@
   .favorite-button { width:38px; height:38px; top:10px; right:10px; }
   @keyframes ovxProductBreathe { 0%,100%{transform:scale(.95) translateY(0)} 50%{transform:scale(1.02) translateY(-8px)} }
 
+  .product-card.ovx-scroll-reveal { transform: translate3d(0,50px,0) scale(.94); }
+  .product-card.ovx-scroll-visible { transform: translate3d(0,0,0) scale(1); }
+  .category-card.ovx-scroll-reveal { transform: translate3d(28px,20px,0) scale(.97); }
+  .category-card.ovx-scroll-visible { transform: translate3d(0,0,0) scale(1); }
+
   .manifesto { margin-top:14px; }
   .manifesto__image { min-height:62svh; }
   .manifesto__image img { object-position:60% center; }
@@ -77,4 +101,14 @@
   .auth-visual { min-height:46svh; }
   .auth-panel { padding:38px 20px 54px; }
   .auth-panel h2 { font-size:clamp(42px,13vw,64px); line-height:.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ovx-scroll-reveal,
+  .ovx-scroll-reveal.ovx-scroll-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
 }
