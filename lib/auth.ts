@@ -2,7 +2,7 @@ import { and, eq, sql } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { getDb } from "@/db";
 import { users } from "@/db/schema";
-import { getAuthenticatedUser, requireChatGPTUser } from "@/app/chatgpt-auth";
+import { getAuthenticatedUser } from "@/app/chatgpt-auth";
 import { AppError } from "./errors";
 import type { AppUser, Role } from "./types";
 import { canAccessAdmin } from "./permissions";
@@ -27,12 +27,10 @@ async function configuredRole(email: string): Promise<Role> {
 export async function getCurrentAppUser(): Promise<AppUser | null> {
   const identity = await getAuthenticatedUser();
   if (!identity) return null;
-
   return upsertAppUser(identity);
 }
 
 export async function upsertAppUser(identity: { email: string; displayName: string }): Promise<AppUser> {
-
   const email = identity.email.trim().toLowerCase();
   const db = await getDb();
   const [existing] = await db.select().from(users).where(eq(users.email, email)).limit(1);
@@ -82,8 +80,8 @@ export async function requireAdminApi(superAdminOnly = false): Promise<AppUser> 
 }
 
 export async function requireAdminPage(returnTo: string): Promise<AppUser> {
-  await requireChatGPTUser(returnTo);
   const user = await getCurrentAppUser();
-  if (!user || !canAccessAdmin(user.role)) redirect("/minha-conta?acesso=negado");
+  if (!user) redirect(`/login?returnTo=${encodeURIComponent(returnTo)}`);
+  if (!canAccessAdmin(user.role)) redirect("/minha-conta?acesso=negado");
   return user;
 }
