@@ -15,6 +15,8 @@ export function ProductCard({ product }: { product: ProductListItem }) {
   const price = product.salePriceCents ?? product.priceCents;
   const soldOut = product.stock <= 0;
   const lowStock = product.stock > 0 && product.stock <= product.minimumStock;
+  const isKeychain = /chaveiro|keychain/i.test(`${product.name} ${product.slug}`);
+  const imageSrc = isKeychain ? "/onvex-keychain-new.webp" : product.imageUrl;
 
   const addToCart = async () => {
     setLoading(true);
@@ -58,8 +60,8 @@ export function ProductCard({ product }: { product: ProductListItem }) {
     <article className="product-card">
       <div className="product-card__media">
         <Link href={`/produto/${product.slug}`} aria-label={`Ver ${product.name}`}>
-          {product.imageUrl ? (
-            <Image src={product.imageUrl} alt={product.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw" />
+          {imageSrc ? (
+            <Image src={imageSrc} alt={product.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw" />
           ) : <div className="product-placeholder">ONVEX</div>}
         </Link>
         <div className="product-badges">
