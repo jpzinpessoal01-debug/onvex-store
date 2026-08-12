@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getDb } from "@/db";
 import { users } from "@/db/schema";
 import { getAuthenticatedUser } from "@/app/chatgpt-auth";
+import { getAdminSessionUser } from "./admin-session";
 import { AppError } from "./errors";
 import type { AppUser, Role } from "./types";
 import { canAccessAdmin } from "./permissions";
@@ -25,6 +26,9 @@ async function configuredRole(email: string): Promise<Role> {
 }
 
 export async function getCurrentAppUser(): Promise<AppUser | null> {
+  const adminSession = await getAdminSessionUser();
+  if (adminSession) return adminSession;
+
   const identity = await getAuthenticatedUser();
   if (!identity) return null;
   return upsertAppUser(identity);
@@ -81,7 +85,7 @@ export async function requireAdminApi(superAdminOnly = false): Promise<AppUser> 
 
 export async function requireAdminPage(returnTo: string): Promise<AppUser> {
   const user = await getCurrentAppUser();
-  if (!user) redirect(`/login?returnTo=${encodeURIComponent(returnTo)}`);
-  if (!canAccessAdmin(user.role)) redirect("/minha-conta?acesso=negado");
+  if (!user) redirect(`/admin/login?returnTo=${encodeURIComponent(returnTo)}`);
+  if (!canAccessAdmin(user.role)) redirect(`/admin/login?error=forbidden&returnTo=${encodeURIComponent(returnTo)}`);
   return user;
 }
