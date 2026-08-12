@@ -13,7 +13,7 @@ const links = [
   ["Contato", "/contato"],
 ];
 
-export function HeaderActions({ signedIn }: { signedIn: boolean }) {
+export function HeaderActions({ signedIn, isAdmin = false }: { signedIn: boolean; isAdmin?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -49,6 +49,7 @@ export function HeaderActions({ signedIn }: { signedIn: boolean }) {
         <button className="icon-button" aria-label="Pesquisar" onClick={() => setSearchOpen((value) => !value)}><SearchIcon /></button>
         <Link className="icon-button hide-mobile" aria-label="Favoritos" href="/favoritos"><HeartIcon /></Link>
         <Link className="icon-button hide-mobile" aria-label={signedIn ? "Minha conta" : "Entrar"} href={signedIn ? "/minha-conta" : "/login"}><UserIcon /></Link>
+        {isAdmin && <Link className="icon-button hide-mobile" aria-label="Painel administrativo" href="/admin"><strong style={{fontSize:10,letterSpacing:".08em"}}>AD</strong></Link>}
         <Link className="icon-button cart-button" aria-label={`Carrinho com ${cartCount} itens`} href="/carrinho">
           <CartIcon />
           {cartCount > 0 && <span className="cart-count">{cartCount > 99 ? "99+" : cartCount}</span>}
@@ -74,10 +75,12 @@ export function HeaderActions({ signedIn }: { signedIn: boolean }) {
         </div>
         <nav aria-label="Menu mobile">
           {links.map(([label, href]) => <Link href={href} key={href} onClick={() => setMenuOpen(false)}>{label}<span>↗</span></Link>)}
+          {isAdmin && <Link href="/admin" onClick={() => setMenuOpen(false)}>Painel administrativo<span>↗</span></Link>}
         </nav>
         <div className="mobile-drawer__account">
           <Link href={signedIn ? "/minha-conta" : "/login"}><UserIcon />{signedIn ? "Minha conta" : "Entrar"}</Link>
           <Link href="/favoritos"><HeartIcon />Favoritos</Link>
+          {isAdmin && <Link href="/admin"><span>⚙</span>Painel admin</Link>}
         </div>
       </aside>
     </>
