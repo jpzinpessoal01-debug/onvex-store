@@ -58,24 +58,14 @@ export function ProductCard({ product }: { product: ProductListItem }) {
 
   return (
     <article className="product-card">
-      <div className="product-card__media">
+      <div className={`product-card__media ${isKeychain ? "product-card__media--keychain" : ""}`}>
         <Link href={`/produto/${product.slug}`} aria-label={`Ver ${product.name}`}>
           {isKeychain ? (
-            // A imagem do chaveiro é servida diretamente para evitar cache/otimização antiga do Next Image.
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src="/onvex-keychain-new.webp?v=20260812-2"
+              className="product-card__keychain-image"
+              src="/onvex-keychain-new.webp?v=20260812-3"
               alt={product.name}
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                objectPosition: "center",
-                padding: "24px",
-                zIndex: 1,
-              }}
             />
           ) : imageSrc ? (
             <Image src={imageSrc} alt={product.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw" />
