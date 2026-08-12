@@ -48,6 +48,15 @@ function replaceQuestionMarks(query: string): string {
     }
   }
 
+  // SQLite emits NULL for autoincrement IDs and may qualify columns in
+  // ON CONFLICT targets. PostgreSQL identity columns need DEFAULT and conflict
+  // targets must use unqualified column names.
+  output = output.replace(/\bVALUES\s*\(\s*null\s*,/gi, "VALUES (DEFAULT,");
+  output = output.replace(/\bON\s+CONFLICT\s*\(([^)]+)\)/gi, (_match, columns: string) => {
+    const normalized = columns.replace(/"[^"]+"\."([^"]+)"/g, '"$1"');
+    return `ON CONFLICT (${normalized})`;
+  });
+
   // SQLite accepts max(value, 0) as a scalar function. PostgreSQL calls the
   // equivalent GREATEST function. Keep aggregate max(column) untouched.
   return output
