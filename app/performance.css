@@ -1,22 +1,24 @@
 /* ONVEX performance pass — preserves the visual direction while reducing mobile GPU work. */
-.onvex-loader__progress-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 8px;font:600 7px var(--font-geist-mono);letter-spacing:.18em;color:#777}
-.onvex-loader__track{height:4px!important;border-radius:999px;background:#171717!important;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
-.onvex-loader__track i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#6d6d6a,#fff);box-shadow:0 0 14px rgba(255,255,255,.55);animation:ovxLoadBar .78s cubic-bezier(.16,1,.3,1) forwards!important}
-@keyframes ovxLoadBar{0%{width:0}55%{width:68%}100%{width:100%}}
+.onvex-loader.onvex-loader--active{animation:none!important;opacity:1!important;visibility:visible!important;transform:none!important}
+.onvex-loader__progress-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 8px;font:600 7px var(--font-geist-mono);letter-spacing:.18em;color:#8c8c88}
+.onvex-loader__track{height:5px!important;border-radius:999px;background:#171717!important;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),0 0 18px rgba(255,255,255,.03)}
+.onvex-loader__track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#737370,#f7f7f2 58%,#9f9f9b);box-shadow:0 0 14px rgba(255,255,255,.45);animation:none!important;transition:width .12s cubic-bezier(.16,1,.3,1)}
+.onvex-loader__core>small{display:block;min-height:10px;margin-top:12px}
 
 @media(max-width:700px){
-  body:before{background-size:56px 56px;opacity:.6}
-  .onvex-ambient{opacity:.09!important}
-  .onvex-ambient i{animation-duration:15s!important}
+  body:before{background-size:64px 64px;opacity:.42}
+  .onvex-ambient{display:none!important}
   .hero__image{animation:none!important;transform:none!important}
   .product-card{animation:none!important}
   .product-card__media img{animation:none!important;transform:scale(.98)!important}
-  .ovx-scroll-reveal{filter:none!important;will-change:opacity,transform;transition:opacity .58s cubic-bezier(.16,1,.3,1) var(--ovx-reveal-delay,0ms),transform .62s cubic-bezier(.16,1,.3,1) var(--ovx-reveal-delay,0ms)!important}
-  .product-card.ovx-scroll-reveal{transform:translate3d(0,30px,0) scale(.975)!important}
-  .category-card.ovx-scroll-reveal{transform:translate3d(18px,14px,0) scale(.985)!important}
+  .ovx-scroll-reveal{filter:none!important;will-change:auto;transition:opacity .5s cubic-bezier(.16,1,.3,1) var(--ovx-reveal-delay,0ms),transform .54s cubic-bezier(.16,1,.3,1) var(--ovx-reveal-delay,0ms)!important}
+  .product-card.ovx-scroll-reveal{transform:translate3d(0,24px,0) scale(.982)!important}
+  .category-card.ovx-scroll-reveal{transform:translate3d(14px,10px,0) scale(.99)!important}
   .product-card.ovx-scroll-visible,.category-card.ovx-scroll-visible{transform:translate3d(0,0,0) scale(1)!important}
   .featured-section,.category-section,.newsletter,.manifesto{content-visibility:auto;contain-intrinsic-size:720px}
-  .site-header{backdrop-filter:blur(10px)!important}
+  .site-header{backdrop-filter:blur(8px)!important}
+  .onvex-loader__grid{animation:none!important;opacity:.6}
+  .onvex-loader__beam{animation:none!important;opacity:.18}
 }
 
-@media(prefers-reduced-motion:reduce){.onvex-loader__track i{animation:none!important;width:100%}}
+@media(prefers-reduced-motion:reduce){.onvex-loader__track i{transition:none!important}}
