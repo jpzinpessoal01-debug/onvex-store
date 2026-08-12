@@ -14,6 +14,7 @@ try {
   await client.query(await readFile(new URL("./neon-schema.sql", import.meta.url), "utf8"));
   await client.query(await readFile(new URL("./neon-seed.sql", import.meta.url), "utf8"));
   await client.query(await readFile(new URL("./neon-media-fix.sql", import.meta.url), "utf8"));
+  await client.query(await readFile(new URL("./neon-price-fix.sql", import.meta.url), "utf8"));
 
   const adminEmails = [
     process.env.SUPER_ADMIN_EMAIL,
