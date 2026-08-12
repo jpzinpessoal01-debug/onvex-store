@@ -2,6 +2,8 @@
 
 E-commerce full stack de artigos premium para Jiu-Jitsu. A loja, a área do cliente e o painel administrativo usam o mesmo banco real; produtos, preços, variantes, estoque, pedidos, cupons, banners, avaliações e configurações não ficam hardcoded no front-end.
 
+<!-- deploy: futurista-mobile-first -->
+
 ## Arquitetura
 
 | Camada | Implementação |
