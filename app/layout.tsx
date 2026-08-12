@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { SiteExperience } from "@/components/SiteExperience";
 import { ToastProvider } from "@/components/ToastProvider";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <SiteExperience />
         <ToastProvider>
           <div className="public-header"><Header /></div>
           <div className="site-shell">{children}</div>
