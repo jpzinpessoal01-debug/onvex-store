@@ -1,0 +1,22 @@
+/* ONVEX performance pass — preserves the visual direction while reducing mobile GPU work. */
+.onvex-loader__progress-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 8px;font:600 7px var(--font-geist-mono);letter-spacing:.18em;color:#777}
+.onvex-loader__track{height:4px!important;border-radius:999px;background:#171717!important;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.onvex-loader__track i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#6d6d6a,#fff);box-shadow:0 0 14px rgba(255,255,255,.55);animation:ovxLoadBar .78s cubic-bezier(.16,1,.3,1) forwards!important}
+@keyframes ovxLoadBar{0%{width:0}55%{width:68%}100%{width:100%}}
+
+@media(max-width:700px){
+  body:before{background-size:56px 56px;opacity:.6}
+  .onvex-ambient{opacity:.09!important}
+  .onvex-ambient i{animation-duration:15s!important}
+  .hero__image{animation:none!important;transform:none!important}
+  .product-card{animation:none!important}
+  .product-card__media img{animation:none!important;transform:scale(.98)!important}
+  .ovx-scroll-reveal{filter:none!important;will-change:opacity,transform;transition:opacity .58s cubic-bezier(.16,1,.3,1) var(--ovx-reveal-delay,0ms),transform .62s cubic-bezier(.16,1,.3,1) var(--ovx-reveal-delay,0ms)!important}
+  .product-card.ovx-scroll-reveal{transform:translate3d(0,30px,0) scale(.975)!important}
+  .category-card.ovx-scroll-reveal{transform:translate3d(18px,14px,0) scale(.985)!important}
+  .product-card.ovx-scroll-visible,.category-card.ovx-scroll-visible{transform:translate3d(0,0,0) scale(1)!important}
+  .featured-section,.category-section,.newsletter,.manifesto{content-visibility:auto;contain-intrinsic-size:720px}
+  .site-header{backdrop-filter:blur(10px)!important}
+}
+
+@media(prefers-reduced-motion:reduce){.onvex-loader__track i{animation:none!important;width:100%}}
