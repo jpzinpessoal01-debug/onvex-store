@@ -1,0 +1,7 @@
+import { and, eq } from "drizzle-orm";
+import { getDb } from "@/db";
+import { orderItems, orders, reviews } from "@/db/schema";
+import { requireUserApi } from "@/lib/auth";
+import { assertInteger, cleanText, enforceSameOrigin, errorResponse } from "@/lib/errors";
+export async function POST(request:Request){try{enforceSameOrigin(request);const user=await requireUserApi();const input=await request.json() as Record<string,unknown>;const orderId=assertInteger(input.orderId,"Pedido");const productId=assertInteger(input.productId,"Produto");const rating=assertInteger(input.rating,"Nota");if(rating>5)return Response.json({error:"A nota deve ser de 1 a 5."},{status:400});const comment=cleanText(input.comment,"Comentário",1200);const db=await getDb();const[purchase]=await db.select({orderId:orders.id}).from(orders).innerJoin(orderItems,and(eq(orderItems.orderId,orders.id),eq(orderItems.productId,productId))).where(and(eq(orders.id,orderId),eq(orders.userId,user.id),eq(orders.status,"DELIVERED"))).limit(1);if(!purchase)return Response.json({error:"A avaliação é permitida após a entrega de um produto comprado."},{status:403});await db.insert(reviews).values({userId:user.id,productId,orderId,rating,comment,verifiedPurchase:true,status:"PENDING"}).onConflictDoUpdate({target:[reviews.userId,reviews.productId],set:{orderId,rating,comment,verifiedPurchase:true,status:"PENDING",updatedAt:new Date().toISOString()}});return Response.json({ok:true},{status:201});}catch(error){return errorResponse(error);}}
+

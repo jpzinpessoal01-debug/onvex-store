@@ -1,0 +1,5 @@
+import type { Metadata } from "next";
+import { ContentPage } from "@/components/ContentPage";
+export const metadata:Metadata={title:"Termos de uso"};
+export default function TermsPage(){return <ContentPage eyebrow="LEGAL" title="TERMOS DE USO." intro="Regras para utilização da loja e compra de produtos ONVEX."><div className="content-sections legal-copy"><section><h2>CONTA E PEDIDOS</h2><p>O usuário é responsável por informar dados verdadeiros. O pedido somente é considerado pago após confirmação do gateway no backend. Disponibilidade e valores são recalculados no servidor.</p></section><section><h2>PREÇOS, CUPONS E ESTOQUE</h2><p>Promoções podem ter prazo e quantidade limitados. Cupons possuem regras próprias. Em caso de conflito de estoque, o sistema impedirá a conclusão e solicitará revisão do carrinho.</p></section><section><h2>ENTREGA E CANCELAMENTO</h2><p>Prazos são estimativas apresentadas no checkout. Cancelamentos e devoluções seguem a legislação aplicável e a política de trocas publicada nesta loja.</p></section><small>Última atualização: 11 de agosto de 2026.</small></div></ContentPage>}
+
