@@ -25,6 +25,60 @@ export function SiteExperience() {
     return () => window.clearTimeout(timer);
   }, [pathname, booting]);
 
+  useEffect(() => {
+    if (booting) return;
+
+    let revealObserver: IntersectionObserver | undefined;
+    let mutationObserver: MutationObserver | undefined;
+    const timers: number[] = [];
+
+    const prepare = () => {
+      revealObserver?.disconnect();
+      revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("ovx-scroll-visible");
+            revealObserver?.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+      );
+
+      const selectors = [
+        ".product-card",
+        ".category-card",
+        ".benefit-grid article",
+        ".section-heading",
+        ".manifesto__image",
+        ".manifesto__content",
+        ".newsletter__inner",
+      ].join(",");
+
+      document.querySelectorAll<HTMLElement>(selectors).forEach((element, index) => {
+        if (element.dataset.ovxRevealReady === "1") return;
+        element.dataset.ovxRevealReady = "1";
+        element.classList.add("ovx-scroll-reveal");
+        element.style.setProperty("--ovx-reveal-delay", `${Math.min(index % 5, 4) * 90}ms`);
+        revealObserver?.observe(element);
+      });
+    };
+
+    const first = window.setTimeout(prepare, 80);
+    timers.push(first);
+    mutationObserver = new MutationObserver(() => {
+      const id = window.setTimeout(prepare, 40);
+      timers.push(id);
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      timers.forEach((id) => window.clearTimeout(id));
+      mutationObserver?.disconnect();
+      revealObserver?.disconnect();
+    };
+  }, [pathname, booting]);
+
   return (
     <>
       {booting && (
