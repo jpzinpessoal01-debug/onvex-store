@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+<title id="title">Chaveiro ONVEX</title><desc id="desc">Chaveiro preto metálico com logotipo ONVEX prateado.</desc>
+<defs>
+  <radialGradient id="bg" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="#242424"/><stop offset=".58" stop-color="#101010"/><stop offset="1" stop-color="#050505"/></radialGradient>
+  <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5c5c5c"/><stop offset=".18" stop-color="#f2f2f2"/><stop offset=".45" stop-color="#9f9f9f"/><stop offset=".72" stop-color="#f7f7f7"/><stop offset="1" stop-color="#676767"/></linearGradient>
+  <linearGradient id="darkMetal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2c2c2c"/><stop offset=".5" stop-color="#080808"/><stop offset="1" stop-color="#3b3b3b"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#000" flood-opacity=".68"/></filter>
+  <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1200" height="1200" fill="url(#bg)"/>
+<ellipse cx="620" cy="1015" rx="380" ry="70" fill="#000" opacity=".42"/>
+<g filter="url(#shadow)">
+  <circle cx="302" cy="286" r="151" fill="none" stroke="url(#darkMetal)" stroke-width="44"/>
+  <circle cx="302" cy="286" r="121" fill="none" stroke="#444" stroke-width="5" opacity=".8"/>
+  <path d="M382 415c35 20 69 39 102 72" fill="none" stroke="url(#darkMetal)" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="451" cy="473" r="39" fill="none" stroke="url(#metal)" stroke-width="19"/>
+  <circle cx="498" cy="520" r="34" fill="none" stroke="url(#darkMetal)" stroke-width="17"/>
+  <g transform="rotate(-8 720 690)">
+    <rect x="432" y="450" width="565" height="660" rx="88" fill="#050505" stroke="url(#metal)" stroke-width="18"/>
+    <rect x="451" y="469" width="527" height="622" rx="69" fill="url(#darkMetal)" stroke="#111" stroke-width="4"/>
+    <circle cx="505" cy="524" r="28" fill="#060606" stroke="#777" stroke-width="8"/>
+    <g transform="translate(528 560) scale(.56)" filter="url(#glow)">
+      <path d="M64 150 220 0h460L555 105H295l-45 43-48 203L64 430Z" fill="url(#metal)"/>
+      <path d="m450 280 118-105-56 234-145 136H104l87-72h161l63-59 35-134Z" fill="url(#metal)"/>
+      <path d="m456 258 315-250-185 219-130 108Z" fill="url(#metal)"/>
+      <path d="m232 337-260 231 184-210 76-70Z" fill="url(#metal)"/>
+    </g>
+    <text x="715" y="915" text-anchor="middle" fill="url(#metal)" font-family="Arial Black,Arial,sans-serif" font-size="108" font-weight="900" letter-spacing="8">ONVEX</text>
+    <path d="M862 838 974 748 899 877" fill="url(#metal)"/>
+  </g>
+</g>
+<rect x="1" y="1" width="1198" height="1198" fill="none" stroke="#fff" stroke-opacity=".04" stroke-width="2"/>
+</svg>
