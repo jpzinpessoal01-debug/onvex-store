@@ -20,8 +20,7 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: S
         <aside className={styles.brandPanel}>
           <div className={styles.brand}>
             <div className={styles.brandMark}>
-              <Image src="/favicon.svg" alt="ONVEX" width={58} height={58} priority />
-              <div className={styles.logo}>ONVEX</div>
+              <Image className={styles.mainLogo} src="/onvex-admin-logo.svg" alt="ONVEX" width={360} height={360} priority />
             </div>
             <p className={styles.kicker}>CONTROLE TOTAL DA SUA LOJA</p>
             <h1 className={styles.title}>PAINEL <span>ADMINISTRATIVO</span></h1>
@@ -41,7 +40,7 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: S
 
         <div className={styles.loginPanel}>
           <div className={styles.loginBox}>
-            <div className={styles.lock}><Image src="/favicon.svg" alt="" width={28} height={28} /></div>
+            <div className={styles.lock}><Image src="/onvex-admin-logo.svg" alt="" width={44} height={44} /></div>
             <div className={styles.heading}>
               <p>ACESSO RESTRITO</p>
               <h1>Entrar no Painel</h1>
