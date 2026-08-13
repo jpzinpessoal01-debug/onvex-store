@@ -31,10 +31,14 @@
 .admin-card__head h2{font-size:15px!important}.admin-card__head span{margin-top:4px!important;font-size:10px!important}
 .admin-sidebar{overflow:hidden!important}
 .admin-sidebar:after{content:"";position:absolute;left:-70px;top:80px;width:240px;height:240px;border:1px solid rgba(255,255,255,.025);transform:rotate(38deg);pointer-events:none}
-.admin-brand{position:relative!important;z-index:1!important;padding-top:4px!important}
-.admin-brand>span{font-size:24px!important;letter-spacing:.19em!important}
-.admin-brand>small{font-size:8px!important;letter-spacing:.24em!important;margin-top:9px!important}
+.admin-brand{position:relative!important;z-index:1!important;padding-top:2px!important;padding-bottom:20px!important}
+.admin-brand>span{width:138px!important;height:58px!important;background:url('/onvex-admin-logo.svg') left center/contain no-repeat!important;font-size:0!important;letter-spacing:0!important;filter:drop-shadow(0 0 18px rgba(255,255,255,.035))}
+.admin-brand>small{font-size:8px!important;letter-spacing:.24em!important;margin-top:5px!important;color:#6d6d6d!important}
 .admin-user{position:relative!important;z-index:2!important;box-shadow:inset 0 1px rgba(255,255,255,.025)!important}
+
+/* login logo should feel like a brand mark, not a raw giant image */
+body:has(form[action="/api/auth/admin-login"]) img[alt="ONVEX"]{width:min(210px,48vw)!important;height:auto!important;max-height:112px!important;object-fit:contain!important;object-position:left center!important;filter:drop-shadow(0 0 18px rgba(255,255,255,.05))!important}
+body:has(form[action="/api/auth/admin-login"]) form{position:relative!important}
 
 /* desktop balance */
 @media(min-width:1500px){
@@ -63,4 +67,5 @@
   .admin-metrics{grid-template-columns:1fr!important}
   .admin-metric{min-height:112px!important}
   .admin-content:before{margin-bottom:12px!important}
+  .admin-brand>span{width:124px!important;height:52px!important}
 }
