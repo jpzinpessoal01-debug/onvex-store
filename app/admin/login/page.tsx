@@ -20,7 +20,7 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: S
         <aside className={styles.brandPanel}>
           <div className={styles.brand}>
             <div className={styles.brandMark}>
-              <Image className={styles.mainLogo} src="/onvex-admin-logo.svg" alt="ONVEX" width={360} height={360} priority />
+              <Image src="/onvex-admin-logo.svg" alt="ONVEX" width={360} height={360} priority style={{ width: 290, height: "auto", padding: 0, border: 0, borderRadius: 0, background: "transparent", boxShadow: "none", objectFit: "contain" }} />
             </div>
             <p className={styles.kicker}>CONTROLE TOTAL DA SUA LOJA</p>
             <h1 className={styles.title}>PAINEL <span>ADMINISTRATIVO</span></h1>
