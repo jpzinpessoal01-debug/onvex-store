@@ -13,7 +13,7 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: S
   const error = (Array.isArray(params.error) ? params.error[0] : params.error) === "invalid";
 
   return (
-    <main className={styles.page}>
+    <main className={`${styles.page} admin-login-root`}>
       <div className={styles.lightA} />
       <div className={styles.lightB} />
       <section className={styles.shell}>
