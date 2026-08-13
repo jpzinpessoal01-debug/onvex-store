@@ -1,0 +1,31 @@
+/* Correções finais do painel administrativo ONVEX */
+.admin-page{width:100%!important;max-width:none!important;overflow-x:hidden!important}
+.admin-main{width:calc(100% - 272px)!important;max-width:none!important;min-width:0!important;margin-left:272px!important}
+.admin-content{box-sizing:border-box!important;width:100%!important;max-width:none!important;min-width:0!important;margin:0!important;display:block!important}
+.admin-content>*{max-width:none!important}
+.admin-metrics,.admin-dashboard-grid,.admin-dashboard-grid--bottom{width:100%!important;max-width:none!important;min-width:0!important}
+.admin-card{min-width:0!important}
+.admin-brand>span{width:176px!important;height:78px!important;display:block!important;background:url('/onvex-admin-logo.svg') center/contain no-repeat!important;-webkit-background-clip:initial!important;background-clip:initial!important;color:transparent!important;font-size:0!important;letter-spacing:0!important;text-shadow:none!important}
+.admin-brand>small{margin-top:0!important}
+
+/* O admin deve ocupar a tela inteira sem o cabeçalho da loja. */
+body:has(.admin-page) .topbar,
+body:has(.admin-page) .site-header,
+body:has(.admin-page) .site-footer,
+body:has(.admin-login-root) .topbar,
+body:has(.admin-login-root) .site-header,
+body:has(.admin-login-root) .site-footer{display:none!important}
+body:has(.admin-page),body:has(.admin-login-root){background:#050505!important}
+body:has(.admin-login-root) .admin-login-root{min-height:100vh!important}
+
+@media(max-width:1180px){
+  .admin-main{width:calc(100% - 272px)!important}
+}
+@media(max-width:860px){
+  .admin-main{width:100%!important;margin-left:0!important}
+  .admin-content{width:100%!important;padding:14px!important}
+  .admin-brand>span{width:150px!important;height:68px!important}
+}
+@media(max-width:560px){
+  .admin-content{padding:10px!important}
+}
