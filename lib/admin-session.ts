@@ -5,7 +5,7 @@ import type { AppUser } from "./types";
 const COOKIE = "onvex_admin_session";
 const MAX_AGE = 60 * 60 * 12;
 const ADMIN_USERNAME = "onvexadmin";
-const ADMIN_PASSWORD_SHA256 = "02d9fde93a5c33f95c124cba99c46e682fab4524db0fc0ec0a67e58ed8928677";
+const ADMIN_PASSWORD_SHA256 = "1b49dc7e51e424f2f2e93ecf50b42627251e0c4f5598787ab248822d7db7fa8d";
 
 type RuntimeEnv = {
   AUTH_SECRET?: string;
