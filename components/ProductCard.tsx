@@ -16,7 +16,7 @@ export function ProductCard({ product }: { product: ProductListItem }) {
   const soldOut = product.stock <= 0;
   const lowStock = product.stock > 0 && product.stock <= product.minimumStock;
   const isKeychain = /chaveiro|keychain/i.test(`${product.name} ${product.slug}`);
-  const imageSrc = isKeychain ? "/onvex-keychain-new.webp" : product.imageUrl;
+  const imageSrc = isKeychain ? "/onvex-keychain-product.svg" : product.imageUrl;
 
   const addToCart = async () => {
     setLoading(true);
@@ -64,7 +64,7 @@ export function ProductCard({ product }: { product: ProductListItem }) {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               className="product-card__keychain-image"
-              src="/onvex-keychain-new.webp?v=20260812-5"
+              src="/onvex-keychain-product.svg?v=20260812-6"
               alt={product.name}
             />
           ) : imageSrc ? (
